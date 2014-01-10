@@ -8,12 +8,12 @@ namespace Purse.Tests
     [TestFixture]
     public class PurseExpiryFixture : BaseTest
     {
-        private Purse<string, string> _cachedString = new Purse<string, string>();
+        private Cache<string, string> _cachedString = new Cache<string, string>();
 
         [SetUp]
         public void SetUp()
         {
-            _cachedString = new Purse<string, string>();
+            _cachedString = new Cache<string, string>();
         }
 
         [Test]
@@ -31,11 +31,11 @@ namespace Purse.Tests
         {
             _cachedString.Get("Test", Counter.GetString, TimeSpan.FromMilliseconds(50));
 
-            _cachedString.Find("Test").Should().NotBeNull();
+            _cachedString.Get("Test").Should().NotBeNull();
 
             Thread.Sleep(100);
 
-            _cachedString.Find("Test").Should().BeNull();
+            _cachedString.Get("Test").Should().BeNull();
 
             Counter.HitCount.Should().Be(1);
         }
@@ -45,7 +45,7 @@ namespace Purse.Tests
         public void should_honor_ttl()
         {
             int hitCount = 0;
-            _cachedString = new Purse<string, string>();
+            _cachedString = new Cache<string, string>();
 
             for (int i = 0; i < 100; i++)
             {

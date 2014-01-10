@@ -35,10 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Storage\CacheItem.cs" />
-    <Compile Include="Storage\IPurseStorage.cs" />
+    <Compile Include="Storage\ICacheStorage.cs" />
     <Compile Include="Storage\MemoryStorage.cs" />
-    <Compile Include="Purse.cs" />
-    <Compile Include="IPurse.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="ICache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

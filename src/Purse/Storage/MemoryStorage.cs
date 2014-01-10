@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Purse.Storage
 {
-    public class MemoryStorage<TKey, TValue> : IPurseStorage<TKey, TValue>
+    public class MemoryStorage<TKey, TValue> : ICacheStorage<TKey, TValue>
     {
         ConcurrentDictionary<TKey, TValue> _dictionary = new ConcurrentDictionary<TKey, TValue>();
 

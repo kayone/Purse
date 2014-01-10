@@ -6,13 +6,13 @@ namespace Purse.Tests
     [TestFixture]
     public class PurseBasicOperationFixture
     {
-        private Purse<string, string> _cachedString = new Purse<string, string>();
+        private Cache<string, string> _cachedString = new Cache<string, string>();
         private Worker _worker;
 
         [SetUp]
         public void SetUp()
         {
-            _cachedString = new Purse<string, string>();
+            _cachedString = new Cache<string, string>();
             _worker = new Worker();
         }
 
@@ -38,21 +38,21 @@ namespace Purse.Tests
         [Test]
         public void should_be_able_to_update_key()
         {
-            _cachedString.Set("Key", "Old");
-            _cachedString.Set("Key", "New");
+            _cachedString.Add("Key", "Old");
+            _cachedString.Add("Key", "New");
 
-            _cachedString.Find("Key").Should().Be("New");
+            _cachedString.Get("Key").Should().Be("New");
         }
 
 
         [Test]
         public void should_be_able_to_remove_key()
         {
-            _cachedString.Set("Key", "Value");
+            _cachedString.Add("Key", "Value");
 
             _cachedString.Remove("Key");
 
-            _cachedString.Find("Key").Should().BeNull();
+            _cachedString.Get("Key").Should().BeNull();
         }
 
         [Test]
@@ -83,9 +83,9 @@ namespace Purse.Tests
         [Test]
         public void should_return_count()
         {
-            _cachedString.Set("Key1", "Value1");
-            _cachedString.Set("Key2", "Value2");
-            _cachedString.Set("Key3", "Value3");
+            _cachedString.Add("Key1", "Value1");
+            _cachedString.Add("Key2", "Value2");
+            _cachedString.Add("Key3", "Value3");
 
             _cachedString.Count.Should().Be(3);
         }
@@ -93,9 +93,9 @@ namespace Purse.Tests
         [Test]
         public void purge_should_clear_all_items()
         {
-            _cachedString.Set("Key1", "Value1");
-            _cachedString.Set("Key2", "Value2");
-            _cachedString.Set("Key3", "Value3");
+            _cachedString.Add("Key1", "Value1");
+            _cachedString.Add("Key2", "Value2");
+            _cachedString.Add("Key3", "Value3");
 
             _cachedString.Count.Should().Be(3);
 
@@ -108,9 +108,9 @@ namespace Purse.Tests
         [Test]
         public void should_return_values()
         {
-            _cachedString.Set("Key1", "Value1");
-            _cachedString.Set("Key2", "Value2");
-            _cachedString.Set("Key3", "Value3");
+            _cachedString.Add("Key1", "Value1");
+            _cachedString.Add("Key2", "Value2");
+            _cachedString.Add("Key3", "Value3");
 
             _cachedString.Values.Should().HaveCount(3);
         }

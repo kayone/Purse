@@ -6,14 +6,14 @@ namespace Purse.Storage
     {
         public CacheItem(T obj, TimeSpan? lifetime = null)
         {
-            Object = obj;
+            Value = obj;
             if (lifetime.HasValue)
             {
                 ExpiryTime = DateTime.UtcNow + lifetime.Value;
             }
         }
 
-        public T Object { get; private set; }
+        public T Value { get; private set; }
         public DateTime? ExpiryTime { get; private set; }
 
         public bool IsExpired()

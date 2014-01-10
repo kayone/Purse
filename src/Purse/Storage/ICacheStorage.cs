@@ -2,7 +2,7 @@
 
 namespace Purse.Storage
 {
-    public interface IPurseStorage<TKey, TValue>
+    public interface ICacheStorage<TKey, TValue>
     {
         void Set(TKey key, TValue cacheItem);
         bool TryGetValue(TKey key, out TValue value);
