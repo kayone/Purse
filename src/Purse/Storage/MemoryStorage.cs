@@ -14,12 +14,12 @@ namespace Purse.Storage
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            return TryGetValue(key, out value);
+            return _dictionary.TryGetValue(key, out value);
         }
 
         public void TryRemove(TKey key, out TValue value)
         {
-            TryRemove(key, out value);
+            _dictionary.TryRemove(key, out value);
         }
 
         public int Count

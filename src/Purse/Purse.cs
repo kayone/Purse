@@ -5,49 +5,49 @@ using Purse.Storage;
 
 namespace Purse
 {
-    public class Purse<T> : IPurse<T>
+    public class Purse<TKey, TValue> : IPurse<TKey, TValue>
     {
-        private readonly IPurseStorage<string, CacheItem<T>> _store;
+        private readonly IPurseStorage<TKey, CacheItem<TValue>> _store;
 
         public Purse()
-            : this(new MemoryStorage<string, CacheItem<T>>())
+            : this(new MemoryStorage<TKey, CacheItem<TValue>>())
         {
         }
 
-        public Purse(IPurseStorage<string, CacheItem<T>> storage)
+        public Purse(IPurseStorage<TKey, CacheItem<TValue>> storage)
         {
             _store = storage;
         }
 
-        public void Set(string key, T value, TimeSpan? lifetime = null)
+        public void Set(TKey key, TValue value, TimeSpan? lifetime = null)
         {
             if (key == null) throw new ArgumentNullException("key");
 
-            _store.Set(key, new CacheItem<T>(value, lifetime));
+            _store.Set(key, new CacheItem<TValue>(value, lifetime));
         }
 
-        public T Find(string key)
+        public TValue Find(TKey key)
         {
-            CacheItem<T> value;
+            CacheItem<TValue> value;
             _store.TryGetValue(key, out value);
 
             if (value == null)
             {
-                return default(T);
+                return default(TValue);
             }
 
             if (value.IsExpired())
             {
                 _store.TryRemove(key, out value);
-                return default(T);
+                return default(TValue);
             }
 
             return value.Object;
         }
 
-        public void Remove(string key)
+        public void Remove(TKey key)
         {
-            CacheItem<T> value;
+            CacheItem<TValue> value;
             _store.TryRemove(key, out value);
         }
 
@@ -56,12 +56,12 @@ namespace Purse
             get { return _store.Count; }
         }
 
-        public T Get(string key, Func<T> function, TimeSpan? lifeTime = null)
+        public TValue Get(TKey key, Func<TValue> function, TimeSpan? lifeTime = null)
         {
             if (key == null) throw new ArgumentNullException("key");
 
-            CacheItem<T> cacheItem;
-            T value;
+            CacheItem<TValue> cacheItem;
+            TValue value;
 
             if (!_store.TryGetValue(key, out cacheItem) || cacheItem.IsExpired())
             {
@@ -81,7 +81,7 @@ namespace Purse
             _store.Purge();
         }
 
-        public IEnumerable<T> Values
+        public IEnumerable<TValue> Values
         {
             get { return _store.Values.Select(c => c.Object); }
         }

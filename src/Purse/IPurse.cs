@@ -3,18 +3,16 @@ using System.Collections.Generic;
 
 namespace Purse
 {
-    public interface IPurse
+    public interface IPurse<TKey, TValue>
     {
+        IEnumerable<TValue> Values { get; }
+        void Set(TKey key, TValue value, TimeSpan? lifetime = null);
+        TValue Get(TKey key, Func<TValue> function, TimeSpan? lifeTime = null);
+        TValue Find(TKey key);
+
         int Count { get; }
         void Purge();
-        void Remove(string key);
+        void Remove(TKey key);
     }
 
-    public interface IPurse<T> : IPurse
-    {
-        IEnumerable<T> Values { get; }
-        void Set(string key, T value, TimeSpan? lifetime = null);
-        T Get(string key, Func<T> function, TimeSpan? lifeTime = null);
-        T Find(string key);
-    }
 }
