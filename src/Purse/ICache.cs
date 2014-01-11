@@ -18,7 +18,7 @@ namespace Purse
         /// <param name="key">Cache Key</param>
         /// <param name="value">Value associated with the cache</param>
         /// <param name="lifetime">Duration for which the item is considered valid</param>
-        void Add(TKey key, TValue value, TimeSpan? lifetime = null);
+        void Set(TKey key, TValue value, TimeSpan? lifetime = null);
 
         /// <summary>
         /// Retrieve an item from cache. Adding it to cache if it doesn't already exist or has expired

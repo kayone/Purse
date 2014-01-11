@@ -19,7 +19,7 @@ namespace Purse
             _store = storage;
         }
 
-        public void Add(TKey key, TValue value, TimeSpan? lifetime = null)
+        public void Set(TKey key, TValue value, TimeSpan? lifetime = null)
         {
             if (key == null) throw new ArgumentNullException("key");
 
@@ -66,7 +66,7 @@ namespace Purse
             if (!_store.TryGetValue(key, out cacheItem) || cacheItem.IsExpired())
             {
                 value = valueFunction();
-                Add(key, value, lifeTime);
+                Set(key, value, lifeTime);
             }
             else
             {
