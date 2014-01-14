@@ -8,7 +8,7 @@
     <owners>Keivan Beigi</owners>
     <projectUrl>https://github.com/kayone/Purse</projectUrl>
     <licenseUrl>https://github.com/kayone/Purse/blob/master/LICENSE</licenseUrl>
-<!--    <iconUrl>https://www.exceptron.com/logos/Exceptron128.png</iconUrl>-->
+    <iconUrl>https://raw.github.com/kayone/Purse/master/assets/purse_logo_128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Purse is a really fast in-proc, in-memory cache for your objects. 
     It has 99% of features you would want from a cache and more, like a really nice read-through interface</description>
