@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Purse\Purse.csproj">
-      <Project>{4FA5C126-5842-4F58-A612-DA2841D2F8DC}</Project>
+      <Project>{7DE51BB7-4104-41BB-A9FE-E7BFCCD926F8}</Project>
       <Name>Purse</Name>
     </ProjectReference>
   </ItemGroup>
