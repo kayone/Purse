@@ -3,13 +3,18 @@ using System.Collections.Generic;
 
 namespace Purse.Storage
 {
-    public class MemoryStorage<TKey, TValue> : ICacheStorage<TKey, TValue>
+    internal class MemoryStorage<TKey, TValue> : ICacheStorage<TKey, TValue>
     {
         ConcurrentDictionary<TKey, TValue> _dictionary = new ConcurrentDictionary<TKey, TValue>();
 
         public void Set(TKey key, TValue cacheItem)
         {
             _dictionary[key] = cacheItem;
+        }
+
+        public bool ContainsKey(TKey key)
+        {
+            return _dictionary.ContainsKey(key);
         }
 
         public bool TryGetValue(TKey key, out TValue value)

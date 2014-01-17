@@ -52,7 +52,7 @@ namespace Purse.Tests
 
             _cachedString.Remove("Key");
 
-            _cachedString.Get("Key").Should().BeNull();
+            _cachedString.ContainsKey("Key").Should().BeFalse();
         }
 
         [Test]

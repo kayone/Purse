@@ -45,6 +45,12 @@ namespace Purse
             return value.Value;
         }
 
+
+        public bool ContainsKey(TKey key)
+        {
+            return _store.ContainsKey(key);
+        }
+
         public void Remove(TKey key)
         {
             CacheItem<TValue> value;

@@ -56,6 +56,8 @@ namespace Purse
         /// </summary>
         /// <param name="key">Key of the item to remove</param>
         void Remove(TKey key);
+
+        bool ContainsKey(TKey key);
     }
 
 }
