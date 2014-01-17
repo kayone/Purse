@@ -27,7 +27,7 @@ namespace Purse.Tests
 
 
         [Test]
-        public void find_should_return_default_if_expired()
+        public void get_should_throw_exception_if_expired()
         {
             _cachedString.Get("Test", Counter.GetString, TimeSpan.FromMilliseconds(50));
 
@@ -35,9 +35,13 @@ namespace Purse.Tests
 
             Thread.Sleep(100);
 
-            _cachedString.Get("Test").Should().BeNull();
+            Assert.Throws<CacheKeyNotFoundException>(() => _cachedString.Get("Test"));
+        }
 
-            Counter.HitCount.Should().Be(1);
+        [Test]
+        public void get_should_throw_if_missing_key()
+        {
+            Assert.Throws<CacheKeyNotFoundException>(() => _cachedString.Get("UnknownKey"));
         }
 
 

@@ -33,13 +33,13 @@ namespace Purse
 
             if (value == null)
             {
-                return default(TValue);
+                throw new CacheKeyNotFoundException(key.ToString());
             }
 
             if (value.IsExpired())
             {
                 _store.TryRemove(key, out value);
-                return default(TValue);
+                throw new CacheKeyNotFoundException(key.ToString());
             }
 
             return value.Value;
@@ -91,7 +91,6 @@ namespace Purse
         {
             get { return _store.Values.Select(c => c.Value); }
         }
-
 
     }
 }
