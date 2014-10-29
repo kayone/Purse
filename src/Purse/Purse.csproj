@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheKeyNotFoundException.cs" />
+    <Compile Include="PrefetchedCache.cs" />
     <Compile Include="Storage\CacheItem.cs" />
     <Compile Include="Storage\ICacheStorage.cs" />
     <Compile Include="Storage\MemoryStorage.cs" />

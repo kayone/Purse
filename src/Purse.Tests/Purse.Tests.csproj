@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="Counter.cs" />
+    <Compile Include="PrefetchedCacheFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurseExpiryFixture.cs" />
     <Compile Include="PurseBasicOperationFixture.cs" />
