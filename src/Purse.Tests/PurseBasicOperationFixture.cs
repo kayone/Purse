@@ -44,6 +44,11 @@ namespace Purse.Tests
             _cachedString.Get("Key").Should().Be("New");
         }
 
+        [Test]
+        public void should_throw_if_value_doesnt_exist()
+        {
+            Assert.Throws<CacheKeyNotFoundException>(() => _cachedString.Get("Key"));
+        }
 
         [Test]
         public void should_be_able_to_remove_key()
