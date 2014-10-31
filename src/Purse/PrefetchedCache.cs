@@ -27,6 +27,7 @@ namespace Purse
         {
             get
             {
+                ValidateExpiry();
                 return _items.Values;
             }
         }
@@ -57,6 +58,7 @@ namespace Purse
         {
             get
             {
+                ValidateExpiry();
                 return _items.Count;
             }
         }
@@ -76,6 +78,7 @@ namespace Purse
         /// </summary>
         public bool ContainsKey(TKey key)
         {
+            ValidateExpiry();
             return _items.ContainsKey(key);
         }
 
