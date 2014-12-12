@@ -27,6 +27,45 @@ namespace Purse.Tests
 
 
         [Test]
+        public void purgeexpired_should_purge_expired_items()
+        {
+            _cachedString.Set("Key1", "Value1", TimeSpan.FromMilliseconds(1));
+            _cachedString.Set("Key2", "Value1", TimeSpan.FromMilliseconds(1));
+            _cachedString.Set("Key3", "Value1", TimeSpan.FromMilliseconds(1));
+
+            Thread.Sleep(100);
+
+            _cachedString.PurgeExpired();
+
+            _cachedString.Values.Should().BeEmpty();
+        }
+
+        [Test]
+        public void purgeexpired_should_not_purge_nonexpired_items()
+        {
+            _cachedString.Set("Key1", "Value1", TimeSpan.FromMinutes(1));
+            _cachedString.Set("Key2", "Value1", TimeSpan.FromMinutes(1));
+            _cachedString.Set("Key3", "Value1", TimeSpan.FromMinutes(1));
+
+            _cachedString.PurgeExpired();
+
+            _cachedString.Values.Should().HaveCount(3);
+        }
+
+        [Test]
+        public void purgeexpired_should_not_purge_items_with_no_ttl_items()
+        {
+            _cachedString.Set("Key1", "Value1");
+            _cachedString.Set("Key2", "Value1");
+            _cachedString.Set("Key3", "Value1");
+
+            _cachedString.PurgeExpired();
+
+            _cachedString.Values.Should().HaveCount(3);
+        }
+
+
+        [Test]
         public void get_should_throw_exception_if_expired()
         {
             _cachedString.Get("Test", Counter.GetString, TimeSpan.FromMilliseconds(50));

@@ -51,6 +51,12 @@ namespace Purse
         /// </summary>
         void Purge();
 
+
+        /// <summary>
+        /// Remove all expired items from cache
+        /// </summary>
+        void PurgeExpired();
+
         /// <summary>
         /// Remove an item with a specific key from cache
         /// </summary>

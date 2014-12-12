@@ -37,6 +37,12 @@ namespace Purse.Storage
             get { return _dictionary.Values; }
         }
 
+
+        public Dictionary<TKey, TValue> Dictionary
+        {
+            get { return new Dictionary<TKey, TValue>(_dictionary); }
+        }
+
         public void Purge()
         {
             var oldDictionary = _dictionary;

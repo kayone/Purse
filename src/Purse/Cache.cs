@@ -51,6 +51,16 @@ namespace Purse
             return _store.ContainsKey(key);
         }
 
+        public void PurgeExpired()
+        {
+            var expiredKeys = _store.Dictionary.Where(c => c.Value.IsExpired()).Select(c => c.Key);
+
+            foreach (var expiredKey in expiredKeys)
+            {
+                Remove(expiredKey);
+            }
+        }
+
         public void Remove(TKey key)
         {
             CacheItem<TValue> value;

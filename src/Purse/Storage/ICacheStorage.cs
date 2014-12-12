@@ -10,6 +10,7 @@ namespace Purse.Storage
         void TryRemove(TKey key, out TValue value);
         int Count { get; }
         IEnumerable<TValue> Values { get; }
+        Dictionary<TKey, TValue> Dictionary { get; }
         void Purge();
     }
 }
